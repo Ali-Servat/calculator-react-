@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import DisplayBox from './Components/DisplayBox';
+import ControlButtons from './Components/ControlButtons';
+import Numbers from './Components/Numbers';
+import Operators from './Components/Operators';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+     const [current, setCurrent] = useState('0');
+     const [last, setLast] = useState('0');
+     const [lastIsEmpty, setLastIsEmpty] = useState(true);
+
+     return (
+          <div className="App">
+               <DisplayBox current={current} last={last} />
+               <ControlButtons
+                    current={current}
+                    setCurrent={setCurrent}
+                    setLast={setLast}
+                    setLastIsEmpty={setLastIsEmpty}
+               />
+               <Numbers current={current} setCurrent={setCurrent} />
+               <Operators
+                    current={current}
+                    last={last}
+                    setCurrent={setCurrent}
+                    setLast={setLast}
+                    lastIsEmpty={lastIsEmpty}
+                    setLastIsEmpty={setLastIsEmpty}
+               />
+          </div>
+     );
 }
 
 export default App;
